@@ -23,6 +23,9 @@ def single_variable_time_series(df):
 
 	df[variable].plot(marker='.', linewidth=1, color='r')
 	
+	df['SMA_7'] = df[variable].rolling(7).mean()
+	df['SMA_7'].plot()
+
 
 	plt.title(variable + ' changes over time')
 	plt.xlabel('Date')
