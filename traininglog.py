@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
+	'''main function'''
 
 	filename = 'Training Log - Log.csv'
 
@@ -12,18 +13,22 @@ def main():
 	
 	df = df.drop(df.index[0])
 
-	weight(df)
+	single_variable_time_series(df)
 
 
-def weight(df):
+def single_variable_time_series(df):
+	''' builds a time series plot for a single variable'''
 
-	df["Weight (pounds)"].plot()
+	variable = 'HRV'
 
+	df[variable].plot(marker='.', linewidth=1, color='r')
+	
 
-	plt.title('Weight Maintenance')
+	plt.title(variable + ' changes over time')
 	plt.xlabel('Date')
-	plt.ylabel('Weight (pounds)')
+	plt.ylabel(variable)
 	plt.show()
+
 
 
 if __name__ == '__main__':
