@@ -16,7 +16,8 @@ def main():
 	
 	df = df.drop(df.index[0])
 	#print(df.columns)
-	single_variable_time_series(df)
+	#single_variable_time_series(df)
+	select_run_type(df)
 
 
 def single_variable_time_series(df):
@@ -35,6 +36,12 @@ def single_variable_time_series(df):
 	plt.ylabel(variable)
 	plt.show()
 
+
+def select_run_type(df):
+	''' select specific types of run only from dataframe'''
+
+	df = df.loc[df['STRAVA Run type'] == 'Long run']
+	print(df)
 
 
 if __name__ == '__main__':
