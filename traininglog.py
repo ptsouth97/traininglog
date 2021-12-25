@@ -15,9 +15,13 @@ def main():
 	df = pd.read_csv(url, index_col=0, parse_dates=True, header=0)
 	
 	df = df.drop(df.index[0])
+
+	###RENAME certain columns here####
+
 	#print(df.columns)
 	#single_variable_time_series(df)
-	select_run_type(df)
+	#select_run_type(df)
+	two_variable_correlation(df)
 
 
 def single_variable_time_series(df):
@@ -34,6 +38,16 @@ def single_variable_time_series(df):
 	plt.title(variable + ' changes over time')
 	plt.xlabel('Date')
 	plt.ylabel(variable)
+	plt.show()
+
+
+def two_variable_correlation(df):
+	''' plots one variable versus another to test correlation'''
+
+	variable1 = 'Running speed (mph)'
+	variable2 = 'Average Cadence (spm)'
+
+	df.plot(x=variable1, y=variable2, kind='scatter')
 	plt.show()
 
 
