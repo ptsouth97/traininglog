@@ -50,16 +50,25 @@ def two_variable_correlation(df):
 	variable2 = 'Average Cadence (spm)'
 
 	df.plot(x=variable1, y=variable2, kind='scatter')
-	plt.show()
 
+	df = df.dropna(subset=[variable1, variable2])
+
+	column = df[variable1]
+	upper_end = column.max()
+	lower_end = column.min()
+	print(lower_end)
 	reg = LinearRegression()
-	prediction_space = np.linspace(1, 5).reshape(-1,1)
+	prediction_space = np.linspace(lower_end, upper_end).reshape(-1,1)
 	X = df[variable1].values.reshape(-1,1)
 	y = df[variable2].values.reshape(-1,1)
 	reg.fit(X,y)
 	y_pred = reg.predict(prediction_space)
 
 	r2 = reg.score(X, y)
+	
+	plt.plot(prediction_space, y_pred, color='red', linewidth=1)
+	plt.title(variable2 + ' versus ' + variable1 + ', r^2=' + str(round(r2,2)))
+	plt.show()
 
 
 def select_run_type(df):
