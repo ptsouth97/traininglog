@@ -2,6 +2,8 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 
 def main():
@@ -49,6 +51,15 @@ def two_variable_correlation(df):
 
 	df.plot(x=variable1, y=variable2, kind='scatter')
 	plt.show()
+
+	reg = LinearRegression()
+	prediction_space = np.linspace(1, 5).reshape(-1,1)
+	X = df[variable1].values.reshape(-1,1)
+	y = df[variable2].values.reshape(-1,1)
+	reg.fit(X,y)
+	y_pred = reg.predict(prediction_space)
+
+	r2 = reg.score(X, y)
 
 
 def select_run_type(df):
