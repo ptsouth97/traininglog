@@ -21,10 +21,11 @@ def main():
 	###RENAME certain columns here####
 
 	#print(df.columns)
-	#single_variable_time_series(df)
+
+	single_variable_time_series(df)
 	#select_run_type(df)
-	df = filter_dates(df)
-	two_variable_correlation(df)
+	#df = filter_dates(df)
+	#two_variable_correlation(df)
 
 
 def filter_dates(df):
@@ -43,7 +44,7 @@ def filter_dates(df):
 def single_variable_time_series(df):
 	''' builds a time series plot for a single variable'''
 
-	variable = 'Weight Gurus Weight (pounds)'
+	variable = 'RHR'
 
 	df[variable].plot(marker='.', linewidth=1, color='r')
 	
@@ -54,6 +55,12 @@ def single_variable_time_series(df):
 	plt.title(variable + ' changes over time')
 	plt.xlabel('Date')
 	plt.ylabel(variable)
+
+	plt.vlines('2021-12-11', 1, 100, colors='black', linestyle='dashed', label='Kiawah marathon')
+	plt.vlines('2021-7-24', 1, 100, colors='black', linestyle='dashed', label='Red Top Roaster')
+	plt.vlines('2021-5-22', 1, 100, colors='black', linestyle='dashed', label='Sweetgrass half marathon')
+	plt.vlines('2021-1-17', 1, 100, colors='black', linestyle='dashed', label='Charleston virtual marathon')
+	plt.legend()
 	plt.show()
 
 	return
