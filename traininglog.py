@@ -56,10 +56,13 @@ def single_variable_time_series(df):
 	plt.xlabel('Date')
 	plt.ylabel(variable)
 
-	plt.vlines('2021-12-11', 1, 100, colors='black', linestyle='dashed', label='Kiawah marathon')
-	plt.vlines('2021-7-24', 1, 100, colors='black', linestyle='dashed', label='Red Top Roaster')
-	plt.vlines('2021-5-22', 1, 100, colors='black', linestyle='dashed', label='Sweetgrass half marathon')
-	plt.vlines('2021-1-17', 1, 100, colors='black', linestyle='dashed', label='Charleston virtual marathon')
+	top_end = df[variable].max()
+	low_end = df[variable].min()
+
+	plt.vlines('2021-12-11', low_end, top_end, colors='green', linestyle='dashed', label='Kiawah marathon')
+	plt.vlines('2021-7-24', low_end, top_end, colors='brown', linestyle='dashed', label='Red Top Roaster')
+	plt.vlines('2021-5-22', low_end, top_end, colors='orange', linestyle='dashed', label='Sweetgrass half marathon')
+	plt.vlines('2021-1-17', low_end, top_end, colors='black', linestyle='dashed', label='Charleston virtual marathon')
 	plt.legend()
 	plt.show()
 
