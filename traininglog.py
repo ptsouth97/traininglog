@@ -27,6 +27,26 @@ def main():
 	#df = filter_dates(df)
 	#two_variable_correlation(df)
 
+	#plot_two(df)
+
+
+def plot_two(df):
+	''' plots one chart above another'''
+
+	figure, axis = plt.subplots(2, 1)
+
+	'''
+	axis[0, 0].plot(y=df['Training Load'], use_index=True)
+
+	axis[0, 1].plot(y=df['HRV'], use_index=True)'''
+	
+	bc = axis[0, 0].single_variable_time_series(df)
+	#bca=single_variable_time_series(df)
+
+	plt.show()
+
+	return
+	
 
 def filter_dates(df):
 	''' selects a range of dates based on user input'''
@@ -44,9 +64,9 @@ def filter_dates(df):
 def single_variable_time_series(df):
 	''' builds a time series plot for a single variable'''
 
-	variable = 'RHR'
+	variable = 'Training Load'
 
-	df[variable].plot(marker='.', linewidth=1, color='r')
+	abc=df[variable].plot(marker='.', linewidth=1, color='r')
 	
 	df['SMA_30'] = df[variable].rolling(30).mean()
 	df['SMA_30'].plot(legend=True)
@@ -64,6 +84,7 @@ def single_variable_time_series(df):
 	plt.vlines('2021-5-22', low_end, top_end, colors='orange', linestyle='dashed', label='Sweetgrass half marathon')
 	plt.vlines('2021-1-17', low_end, top_end, colors='black', linestyle='dashed', label='Charleston virtual marathon')
 	plt.legend()
+	plt.savefig(variable+'.png')
 	plt.show()
 
 	return
@@ -72,8 +93,8 @@ def single_variable_time_series(df):
 def two_variable_correlation(df):
 	''' plots one variable versus another to test correlation'''
 
-	variable1 = 'Running speed (mph)'
-	variable2 = 'Average Cadence (spm)'
+	variable1 = 'Training Load'
+	variable2 = 'HRV'
 
 	df.plot(x=variable1, y=variable2, kind='scatter')
 
