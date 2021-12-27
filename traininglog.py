@@ -23,7 +23,21 @@ def main():
 	#print(df.columns)
 	#single_variable_time_series(df)
 	#select_run_type(df)
+	df = filter_dates(df)
 	two_variable_correlation(df)
+
+
+def filter_dates(df):
+	''' selects a range of dates based on user input'''
+
+	start_date = '2021-12-1'
+	end_date = '2021-12-25'
+	
+	df = df.loc[start_date:end_date]
+
+	#print(df) 
+
+	return df
 
 
 def single_variable_time_series(df):
@@ -41,6 +55,8 @@ def single_variable_time_series(df):
 	plt.xlabel('Date')
 	plt.ylabel(variable)
 	plt.show()
+
+	return
 
 
 def two_variable_correlation(df):
@@ -70,12 +86,16 @@ def two_variable_correlation(df):
 	plt.title(variable2 + ' versus ' + variable1 + ', r^2=' + str(round(r2,2)))
 	plt.show()
 
+	return
+
 
 def select_run_type(df):
 	''' select specific types of run only from dataframe'''
 
 	df = df.loc[df['STRAVA Run type'] == 'Long run']
 	print(df)
+
+	return
 
 
 if __name__ == '__main__':
