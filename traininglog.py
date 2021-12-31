@@ -22,8 +22,10 @@ def main():
 
 	#print(df.columns)
 
+
+	df = select_run_type(df)
 	single_variable_time_series(df)
-	#select_run_type(df)
+	
 	#df = filter_dates(df)
 	#two_variable_correlation(df)
 
@@ -64,7 +66,7 @@ def filter_dates(df):
 def single_variable_time_series(df):
 	''' builds a time series plot for a single variable'''
 
-	variable = 'Training Load'
+	variable = 'Running speed (mph)'
 
 	abc=df[variable].plot(marker='.', linewidth=1, color='r')
 	
@@ -123,10 +125,9 @@ def two_variable_correlation(df):
 def select_run_type(df):
 	''' select specific types of run only from dataframe'''
 
-	df = df.loc[df['STRAVA Run type'] == 'Long run']
-	print(df)
-
-	return
+	df = df.loc[df['STRAVA Run type'].isin(['Long run', 'Medium long'])]
+	
+	return(df)
 
 
 if __name__ == '__main__':
