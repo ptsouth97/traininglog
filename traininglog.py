@@ -21,16 +21,35 @@ def main():
 	###RENAME certain columns here####
 
 	#print(df.columns)
-
-	df = convert_pace(df)
-	df = select_run_type(df)
-	df = single_variable_time_series(df)
+	calories(df)
+	#df = convert_pace(df)
+	#df = select_run_type(df)
+	#df = single_variable_time_series(df)
 	
 	#df = filter_dates(df)
 	#two_variable_correlation(df)
 
 	#plot_two(df)
 
+
+def calories(df):
+	''' plots calories'''
+
+	variable1 = 'Calories consumed'
+	variable2 = 'Calories required (low)'
+	variable3 = 'Calories required (high)' 
+
+	df[variable1].plot(marker='.', linewidth=0.5, color='r')
+	df[variable2].plot(marker='', linewidth=1, color='b')	
+	df[variable3].plot(marker='', linewidth=1, color='g')
+	plt.title('Caloric Intake')
+	plt.xlabel('Date')
+	plt.xlabel('Calories')
+	plt.legend()
+
+	plt.show()
+
+	return
 
 def plot_two(df):
 	''' plots one chart above another'''
