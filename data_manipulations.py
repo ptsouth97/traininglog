@@ -21,13 +21,13 @@ def main():
 	###RENAME certain columns here####
 
 	#print(df.columns)
-	calories(df)
-	#df = convert_pace(df)
+	#calories(df)
+	df = convert_pace(df)
 	#df = select_run_type(df)
 	#df = single_variable_time_series(df)
 	
 	#df = filter_dates(df)
-	#two_variable_correlation(df)
+	two_variable_correlation(df)
 
 	#plot_two(df)
 
@@ -114,8 +114,12 @@ def single_variable_time_series(df):
 def two_variable_correlation(df):
 	''' plots one variable versus another to test correlation'''
 
-	variable1 = 'Training Load'
-	variable2 = 'HRV'
+	variable1 = 'Average Cadence (spm)'
+	variable2 = 'Pace (min/mile)'
+
+	# exclude outliers
+	q = df[variable2].quantile(0.99)
+	df = df[df[variable2] < q]
 
 	df.plot(x=variable1, y=variable2, kind='scatter')
 

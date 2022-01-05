@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression
+import data_manipulations
 
 
 def main():
@@ -18,7 +19,7 @@ def main():
 	
 	df = df.drop(df.index[0])
 
-	df = convert_pace(df)
+	df = data_manipulations.convert_pace(df)
 	#df = select_run_type(df)
 	#df = single_variable_time_series(df)
 	
@@ -77,9 +78,9 @@ def select_run_type(df):
 	
 	return(df)
 
-
+	'''
 def convert_pace(df):
-	''' converts 0:8:00 min/mile to 8.0 min/mile'''
+	 converts 0:8:00 min/mile to 8.0 min/mile
 
 	df['datetime'] = pd.to_datetime(df['Average Pace (min/mile)'])
 	df['minutes'] = df['datetime'].dt.minute
@@ -87,7 +88,7 @@ def convert_pace(df):
 	df['Pace (min/mile)'] = round(df['minutes'] + df['seconds'], 2)
 
 	return(df)
-
+	'''
 
 if __name__ == '__main__':
 	main()
