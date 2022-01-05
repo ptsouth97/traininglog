@@ -13,3 +13,6 @@ The application was tested using Python 3.6.6 running on Ubuntu and relies on:
 
 1. Correlations 
 	1. Question 1: Does higher cadence correlate with higher pace?
+	2. Question 2: Does vertical oscillation correlate with higher pace?
+2. Changes Over Time
+	1. Question 1: How has weight changed over time?
