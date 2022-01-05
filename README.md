@@ -11,4 +11,5 @@ The application was tested using Python 3.6.6 running on Ubuntu and relies on:
 
 ## How it works
 
-1. Question 1: Does higher cadence correlate with higher pace?
+1. Correlations 
+* Question 1: Does higher cadence correlate with higher pace?
