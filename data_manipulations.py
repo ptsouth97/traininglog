@@ -18,9 +18,6 @@ def main():
 	
 	df = df.drop(df.index[0])
 
-	###RENAME certain columns here####
-
-	#print(df.columns)
 	#calories(df)
 	df = convert_pace(df)
 	#df = select_run_type(df)
@@ -145,11 +142,11 @@ def two_variable_correlation(df):
 	return
 
 
-def select_run_type(df):
+def select_run_type(df, run_type):
 	''' select specific types of run only from dataframe'''
 
-	df = df.loc[df['STRAVA Run type'].isin(['Long run', 'Medium long'])]
-	
+	df = df.loc[df['STRAVA Run type'].isin(run_type)]
+
 	return(df)
 
 
