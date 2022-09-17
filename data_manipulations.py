@@ -4,19 +4,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression
+import load
 
 
 def main():
 	'''main function'''
 
-	#filename = 'Training Log - Log.csv'
-	sheet_id = '1epQ4axsxFBJ4sTvhTiahAuDX1MqcWfj9iY7igJK5oHA'
-	sheet_name = 'Log'
-	url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-
-	df = pd.read_csv(url, index_col=0, parse_dates=True, header=0)
-	
-	df = df.drop(df.index[0])
+	df = load.data()
 
 	#calories(df)
 	df = convert_pace(df)
@@ -66,13 +60,13 @@ def plot_two(df):
 	return
 	
 
-def filter_dates(df):
+def filter_dates(df, start, end):
 	''' selects a range of dates based on user input'''
 
-	start_date = '2021-12-1'
-	end_date = '2021-12-25'
+	#start_date = '2021-12-1'
+	#end_date = '2021-12-25'
 	
-	df = df.loc[start_date:end_date]
+	df = df.loc[start:end]
 
 	#print(df) 
 
